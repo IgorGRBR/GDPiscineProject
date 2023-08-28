@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlgggsgvry8ti"]
+
+[ext_resource type="Script" path="res://nodes/zombie.gd" id="1_2cgl3"]
+[ext_resource type="Texture2D" uid="uid://vtm1fj8gp6vc" path="res://sprites/zombie.png" id="1_lcwj2"]
+[ext_resource type="Texture2D" uid="uid://c6sj5k0lsca0r" path="res://sprites/fx/blood.png" id="3_peawy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5bhnp"]
+radius = 6.0
+
+[node name="Zombie" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_2cgl3")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_lcwj2")
+hframes = 4
+vframes = 2
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5bhnp")
+
+[node name="Blood" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 3
+lifetime = 0.5
+one_shot = true
+texture = ExtResource("3_peawy")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 54.55

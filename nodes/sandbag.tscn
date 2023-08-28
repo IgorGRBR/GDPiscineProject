@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bog50ko33dfd2"]
+
+[ext_resource type="Script" path="res://nodes/sandbag.gd" id="1_n7us8"]
+[ext_resource type="Texture2D" uid="uid://bq7jk6g8earlt" path="res://sprites/sandbag.png" id="2_n1pux"]
+[ext_resource type="Texture2D" uid="uid://b8it3l2ss7vls" path="res://sprites/fx/sand-particles.png" id="3_5uinm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1xq1l"]
+radius = 8.0
+
+[node name="Sandbag" type="RigidBody2D"]
+mass = 0.08
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_n7us8")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1xq1l")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_n1pux")
+vframes = 3
+frame = 2
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+emitting = false
+one_shot = true
+texture = ExtResource("3_5uinm")
+emission_shape = 1
+emission_sphere_radius = 8.38
+gravity = Vector2(0, 0)

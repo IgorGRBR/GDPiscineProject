@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://rygw8r55qwfp"]
+
+[ext_resource type="Script" path="res://nodes/car.gd" id="1_7rm68"]
+[ext_resource type="Texture2D" uid="uid://dohigguvte71h" path="res://sprites/cars/taxi-bad.png" id="2_mghdf"]
+[ext_resource type="Texture2D" uid="uid://bdjogt0cag7tk" path="res://sprites/cars/taxi-worse.png" id="3_5fy41"]
+[ext_resource type="Texture2D" uid="uid://b2jr5obgkhaaw" path="res://sprites/cars/taxi.png" id="4_in4a0"]
+[ext_resource type="Texture2D" uid="uid://rj7f2fadfvwe" path="res://sprites/fx/smoke.png" id="5_k3nos"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3ul8"]
+size = Vector2(26, 42)
+
+[node name="Car" type="CharacterBody2D"]
+up_direction = Vector2(0, 1)
+wall_min_slide_angle = 0.0
+floor_stop_on_slope = false
+floor_snap_length = 0.0
+platform_on_leave = 2
+platform_floor_layers = 4294901760
+script = ExtResource("1_7rm68")
+car_texture = ExtResource("4_in4a0")
+car_bad_texture = ExtResource("2_mghdf")
+car_worse_texture = ExtResource("3_5fy41")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("4_in4a0")
+vframes = 2
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v3ul8")
+
+[node name="ExitPoint" type="Node2D" parent="CollisionShape"]
+position = Vector2(-25, 0)
+
+[node name="ExitPoint2" type="Node2D" parent="CollisionShape"]
+position = Vector2(25, 0)
+
+[node name="Smoke" type="CPUParticles2D" parent="CollisionShape"]
+position = Vector2(0, -13)
+emitting = false
+amount = 4
+texture = ExtResource("5_k3nos")
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 0.2
+initial_velocity_max = 35.35
+
+[node name="Camera" type="Camera2D" parent="."]
+enabled = false
+process_callback = 0
+
+[node name="Sparks" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 30
+lifetime = 0.3
+one_shot = true
+lifetime_randomness = 0.29
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 45.26
+initial_velocity_max = 158.69
+color = Color(1, 0.631373, 0.254902, 1)
+hue_variation_min = -0.41
+hue_variation_max = 0.48
